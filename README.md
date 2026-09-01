@@ -14,8 +14,8 @@ Para cumplir con los estándares de diseño, desarrollo e integración continua 
 
 | Integrante | Rol / Responsabilidad Principal | Entregables y Aportes Específicos |
 | :--- | :--- | :--- |
-| **Integrante 1** | **Diseño Técnico y Modelado** | Especificación técnica de endpoints (Fase 1), análisis teórico de arquitectura REST/SOA, diseño de la entidad `Producto.java` y commits asociados a la especificación. |
-| **Integrante 2** | **Implementación de Endpoints** | Construcción de `ProductoController.java`, repositorio in-memory `ProductoRepository.java`, gestión de excepciones con `GlobalExceptionHandler.java` y clases de servicio. |
+| **Nelson Lacayo** | **Diseño Técnico y Modelado** | Especificación técnica de endpoints (Fase 1), análisis teórico de arquitectura REST/SOA, diseño de la entidad `Producto.java` y commits asociados a la especificación. |
+| **Carlos** | **Implementación de Endpoints y Servicios** | Construcción de `ProductoController.java`, repositorio in-memory `ProductoRepository.java`, gestión de excepciones con `GlobalExceptionHandler.java` y clases de servicio. |
 | **Integrante 3** | **Pruebas, Documentación y Arquitectura** | Elaboración de la matriz de pruebas en Postman (Fase 4), creación de la colección JSON, diseño del diagrama de arquitectura SOA en Draw.io (Fase 5) y pruebas `MockMvc`. |
 
 ### Estrategia de Git, Ramas y Historial de Commits
@@ -25,9 +25,9 @@ El desarrollo se llevó a cabo utilizando el flujo **GitFlow** en un repositorio
 ```
 main (Producción / Entregables)
  │
- ├── feature/model-and-specification (Integrante 1)
- ├── feature/rest-controller-impl   (Integrante 2)
- └── feature/tests-and-architecture (Integrante 3)
+ ├── feature/nelson (Nelson Lacayo - Diseño y Modelado)
+ ├── feature/carlos (Carlos - Controlador REST y Repositorio)
+ └── feature/tests-and-architecture (Pruebas y Diagrama SOA)
 ```
 
 #### Historial Registrado de Commits Significativos (Mínimo 4 por Integrante)
