@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net" modified="2026-09-01T00:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="SOA_Architecture_Cafe_Soluble" name="Arquitectura SOA Spring Boot - Café Soluble S.A.">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Cliente Postman -->
+        <mxCell id="client" value="Cliente / Postman&#10;(Consumidor REST)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="180" height="280" as="geometry" />
+        </mxCell>
+        
+        <!-- Contenedor Spring Boot Application -->
+        <mxCell id="springboot" value="Aplicación Spring Boot (Puerto 8080 - Tomcat Embedded)" style="shape=swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1;fontSize=14;startSize=30;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="160" width="560" height="440" as="geometry" />
+        </mxCell>
+        
+        <!-- Componentes internos Spring Boot -->
+        <mxCell id="dispatcher" value="DispatcherServlet&#10;(Front Controller)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="springboot">
+          <mxGeometry x="40" y="80" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="controller" value="ProductoController&#10;(@RestController&#10;/api/productos)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="springboot">
+          <mxGeometry x="260" y="80" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="jackson" value="Jackson ObjectMapper&#10;(Java Object &lt;--&gt; JSON)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="springboot">
+          <mxGeometry x="40" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="exceptionhandler" value="GlobalExceptionHandler&#10;(@RestControllerAdvice&#10;Manejo de 404)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;rounded=1;" vertex="1" parent="springboot">
+          <mxGeometry x="260" y="240" width="180" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Bloque Productos en Memoria -->
+        <mxCell id="memory" value="ProductoRepository&#10;(Productos en Memoria&#10;CopyOnWriteArrayList)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="900" y="240" width="180" height="280" as="geometry" />
+        </mxCell>
+
+        <!-- Flujos de Peticion / Respuesta -->
+        <!-- Flujo 1: Peticion Exitosa (Verde) -->
+        <mxCell id="flow_req_200" value="1. GET /api/productos/3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2D862D;strokeWidth=3;fontColor=#2D862D;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="client" target="dispatcher">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="280" />
+              <mxPoint x="250" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_controller_200" value="2. Mapeo a obtenerProductoPorId(3)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2D862D;strokeWidth=2;fontColor=#2D862D;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="dispatcher" target="controller">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_repo_200" value="3. findById(3)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2D862D;strokeWidth=2;fontColor=#2D862D;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="controller" target="memory">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="280" />
+              <mxPoint x="750" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_resp_200" value="4. Return Producto Java -&gt; Jackson JSON -&gt; HTTP 200 OK" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2D862D;strokeWidth=3;fontColor=#2D862D;fontStyle=1;labelBackgroundColor=#FFFFFF;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jackson" target="client">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="440" />
+              <mxPoint x="250" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Flujo 2: Peticion Inexistente (Rojo) -->
+        <mxCell id="flow_req_404" value="A. GET /api/productos/999" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=2;dashed=1;fontColor=#CC0000;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="client" target="dispatcher">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="300" />
+              <mxPoint x="250" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_err_404" value="B. findById(999) -&gt; Optional.empty() -&gt; ProductoNoEncontradoException" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=2;dashed=1;fontColor=#CC0000;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="controller" target="exceptionhandler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_resp_404" value="C. ErrorResponse JSON -&gt; HTTP 404 NOT FOUND" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#CC0000;strokeWidth=2;dashed=1;fontColor=#CC0000;fontStyle=1;labelBackgroundColor=#FFFFFF;entryX=1;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="exceptionhandler" target="client">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="470" />
+              <mxPoint x="220" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
