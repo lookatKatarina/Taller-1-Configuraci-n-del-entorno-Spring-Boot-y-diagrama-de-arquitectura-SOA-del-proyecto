@@ -25,9 +25,8 @@ El desarrollo se llevó a cabo utilizando el flujo **GitFlow** en un repositorio
 ```
 main (Producción / Entregables)
  │
- ├── feature/nelson (Nelson Lacayo - Diseño y Modelado)
- ├── feature/carlos (Carlos - Controlador REST y Repositorio)
- └── feature/tests-and-architecture (Pruebas y Diagrama SOA)
+ ├── nelson (Nelson Lacayo - Especificación, Análisis y Modelo Producto.java)
+ └── carlos (Carlos Ávalos - Controlador REST, Repositorio e Integración)
 ```
 
 #### Historial Registrado de Commits Significativos (Mínimo 4 por Integrante)
