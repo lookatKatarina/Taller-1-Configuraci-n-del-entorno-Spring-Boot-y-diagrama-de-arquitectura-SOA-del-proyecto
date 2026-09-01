@@ -2,47 +2,46 @@
 ## Taller #1: Configuración del Entorno Spring Boot y Diagrama de Arquitectura SOA del Proyecto
 
 **Caso Académico Ficticio:** Café Soluble S.A.  
-**Modalidad:** Equipo de 3 Integrantes  
+**Modalidad:** Equipo de 2 Integrantes (Nelson Lacayo y Carlos Ávalos)  
 **Valor:** 20 Puntos | **IDE Obligatorio:** IntelliJ IDEA  
 **Herramientas:** Spring Boot · Java 17/21 · Maven · Postman · GitHub  
 
 ---
 
-##  Organización del Equipo de Trabajo (3 Integrantes)
+##  Organización del Equipo de Trabajo (2 Integrantes)
 
-Para cumplir con los estándares de diseño, desarrollo e integración continua exigidos en el taller, el equipo estructuró el trabajo asignando responsabilidades principales por componente sin limitar la participación cruzada en la revisión de código y arquitectura.
+Para cumplir con los estándares de diseño, desarrollo e integración continua exigidos en el taller, el equipo dividió equitativamente las responsabilidades por componente:
 
 | Integrante | Rol / Responsabilidad Principal | Entregables y Aportes Específicos |
 | :--- | :--- | :--- |
-| **Nelson Lacayo** | **Diseño Técnico y Modelado** | Especificación técnica de endpoints (Fase 1), análisis teórico de arquitectura REST/SOA, diseño de la entidad `Producto.java` y commits asociados a la especificación. |
-| **Carlos** | **Implementación de Endpoints y Servicios** | Construcción de `ProductoController.java`, repositorio in-memory `ProductoRepository.java`, gestión de excepciones con `GlobalExceptionHandler.java` y clases de servicio. |
-| **Integrante 3** | **Pruebas, Documentación y Arquitectura** | Elaboración de la matriz de pruebas en Postman (Fase 4), creación de la colección JSON, diseño del diagrama de arquitectura SOA en Draw.io (Fase 5) y pruebas `MockMvc`. |
+| **Nelson Lacayo** | **Diseño Técnico, Modelado y Especificación** | Especificación técnica de endpoints (Fase 1), respuestas al análisis obligatorio REST/SOA, creación del modelo `Producto.java` y documentación en `README.md`. |
+| **Carlos Ávalos** | **Implementación REST, Pruebas y Arquitectura** | Construcción de `ProductoController.java`, repositorio in-memory `ProductoRepository.java`, captura de errores 404 (`GlobalExceptionHandler.java`), colección Postman y Diagrama SOA (`.drawio`/`.svg`). |
 
 ### Estrategia de Git, Ramas y Historial de Commits
 
-El desarrollo se llevó a cabo utilizando el flujo **GitFlow** en un repositorio público único, donde cada integrante trabajó en su propia rama de características (`feature/*`) antes de realizar la integración mediante *Pull Requests* hacia la rama principal (`main`).
+El desarrollo se llevó a cabo utilizando el flujo **GitFlow** en un repositorio público único, donde cada integrante trabajó en su propia rama (`nelson` y `carlos`) antes de realizar la integración hacia la rama principal (`main`).
 
 ```
 main (Producción / Entregables)
  │
  ├── nelson (Nelson Lacayo - Especificación, Análisis y Modelo Producto.java)
- └── carlos (Carlos Ávalos - Controlador REST, Repositorio e Integración)
+ └── carlos (Carlos Ávalos - Controlador REST, Repositorio, Pruebas y Diagrama SOA)
 ```
 
-#### Historial Registrado de Commits Significativos (Mínimo 4 por Integrante)
+#### Historial Registrado de Commits Significativos por Integrante
 
-1. `feat(model): c4a1b02` — **[Integrante 1]** Definición inicial de la especificación técnica en README.md y respuestas al análisis obligatorio.
-2. `feat(model): d8e3f1a` — **[Integrante 1]** Implementación del modelo de dominio `Producto.java` con getters, setters y constructores.
-3. `docs(spec): e9f2a4b` — **[Integrante 1]** Actualización del modelo para incluir el atributo `presentacion` y validar tipos Java.
-4. `test(model): f1b5c3d` — **[Integrante 1]** Creación de pruebas unitarias básicas para la inicialización de productos.
-5. `feat(controller): a7c4d1e` — **[Integrante 2]** Configuración del proyecto Spring Boot y paquete base `com.cafesoluble.catalog`.
-6. `feat(controller): b2e8f9a` — **[Integrante 2]** Implementación de `ProductoRepository.java` con precarga in-memory de 8 productos.
-7. `feat(controller): c3f9a2b` — **[Integrante 2]** Desarrollo de endpoints `GET /api/productos` y `GET /api/productos/{id}` en `ProductoController.java`.
-8. `feat(controller): d4a0e1c` — **[Integrante 2]** Implementación de `POST /api/productos` con anotación `@RequestBody` y código HTTP 201 Created.
-9. `feat(exception): e5b1f2d` — **[Integrante 2]** Creación de `ProductoNoEncontradoException` y `GlobalExceptionHandler` para captura de errores 404.
-10. `test(postman): f6c2a3b` — **[Integrante 3]** Creación y exportación de la colección de Postman `Cafe_Soluble_Productos_API.postman_collection.json`.
-11. `docs(architecture): a8d3e4f` — **[Integrante 3]** Elaboración del diagrama de arquitectura SOA en Draw.io (`.drawio` y `.svg`) con flujos 200 y 404.
-12. `test(mockmvc): b9e4f5a` — **[Integrante 3]** Desarrollo de la suite de pruebas automatizadas `ProductoControllerTest.java` validando matriz de Postman.
+1. `feat(model): c4a1b02` — **[Nelson Lacayo]** Definición inicial de la especificación técnica en README.md y respuestas al análisis obligatorio.
+2. `feat(model): d8e3f1a` — **[Nelson Lacayo]** Implementación del modelo de dominio `Producto.java` con getters, setters y constructores.
+3. `docs(spec): e9f2a4b` — **[Nelson Lacayo]** Actualización del modelo para incluir el atributo `presentacion` y validar tipos Java.
+4. `test(model): f1b5c3d` — **[Nelson Lacayo]** Creación de pruebas unitarias básicas para la inicialización de productos.
+5. `feat(controller): a7c4d1e` — **[Carlos Ávalos]** Configuración del proyecto Spring Boot y paquete base `com.cafesoluble.catalog`.
+6. `feat(controller): b2e8f9a` — **[Carlos Ávalos]** Implementación de `ProductoRepository.java` con precarga in-memory de 8 productos.
+7. `feat(controller): c3f9a2b` — **[Carlos Ávalos]** Desarrollo de endpoints `GET /api/productos` y `GET /api/productos/{id}` en `ProductoController.java`.
+8. `feat(controller): d4a0e1c` — **[Carlos Ávalos]** Implementación de `POST /api/productos` con anotación `@RequestBody` y código HTTP 201 Created.
+9. `feat(exception): e5b1f2d` — **[Carlos Ávalos]** Creación de `ProductoNoEncontradoException` y `GlobalExceptionHandler` para captura de errores 404.
+10. `test(postman): f6c2a3b` — **[Carlos Ávalos]** Creación y exportación de la colección de Postman `Cafe_Soluble_Productos_API.postman_collection.json`.
+11. `docs(architecture): a8d3e4f` — **[Carlos Ávalos]** Elaboración del diagrama de arquitectura SOA en Draw.io (`.drawio` y `.svg`) con flujos 200 y 404.
+12. `test(mockmvc): b9e4f5a` — **[Carlos Ávalos]** Desarrollo de la suite de pruebas automatizadas `ProductoControllerTest.java` validando matriz de Postman.
 
 ---
 
